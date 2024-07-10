@@ -22,7 +22,7 @@ pipeline {
         S3_BUCKET = 'sam-jenkins-demo-us-west-2'
       }
       steps {
-        withAWS(credentials: 'sam-jenkins-demo-credentials', region: 'us-west-2') {
+        withAWS(credentials: 'jenkins_user', region: 'us-west-2') {
           unstash 'venv'
           unstash 'aws-sam'
           bat 'venv\\Scripts\\sam deploy --stack-name $STACK_NAME -t template.yaml --s3-bucket $S3_BUCKET --capabilities CAPABILITY_IAM'
@@ -39,7 +39,7 @@ pipeline {
         S3_BUCKET = 'sam-jenkins-demo-us-west-2-2'
       }
       steps {
-        withAWS(credentials: 'sam-jenkins-demo-credentials', region: 'us-west-2') {
+        withAWS(credentials: 'jenkins_user', region: 'us-west-2') {
           unstash 'venv'
           unstash 'aws-sam'
           bat 'venv\\Scripts\\sam deploy --stack-name $STACK_NAME -t template.yaml --s3-bucket $S3_BUCKET --capabilities CAPABILITY_IAM'
