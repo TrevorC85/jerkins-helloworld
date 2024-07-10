@@ -3,7 +3,11 @@ pipeline {
  
   stages {
     stage('Install sam-cli') {
+	  environment {
+        test = 'var test sucsessful'
+      }
       steps {
+		bat 'echo %test%'
         bat 'python -m venv venv'
 		bat 'venv\\Scripts\\pip install aws-sam-cli'
         stash includes: '**/venv/**/*', name: 'venv'
